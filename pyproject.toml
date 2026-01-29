@@ -1,0 +1,18 @@
+[project]
+name = "aqa-python-junior"
+version = "1.0.0"
+description = "Junior python AQA"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "allure-pytest>=2.15.3",
+    "pydantic-settings>=2.12.0",
+    "pytest-xdist>=3.8.0",
+    "selenium>=4.40.0",
+    "webdriver-manager>=4.0.2",
+]
+[tool.pytest.ini_options]
+markers = [
+    "login: Tests related to login functionality",
+    "smoke: Smoke tests that should run on every build"
+]
