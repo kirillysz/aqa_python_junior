@@ -18,9 +18,13 @@ logger = logging.getLogger(__name__)
 @pytest.fixture
 def driver():
     firefox_options = Options()
-    # firefox_options.add_argument("--no-sandbox")
+    firefox_options.add_argument("--no-sandbox")
     firefox_options.add_argument("--disable-dev-shm-usage")
     firefox_options.add_argument("--window-size=1920,1080")
+    firefox_options.add_argument("--headless")
+    firefox_options.add_argument("--disable-gpu")
+    firefox_options.add_argument("--disable-software-rasterizer")
+    firefox_options.add_argument("--disable-extensions")
 
     service = Service("/usr/local/bin/geckodriver")
 
@@ -43,7 +47,7 @@ def driver():
     yield driver
 
     driver.quit()
-    logger.info("❌ Браузер закрыт")
+    logger.info("Браузер закрыт")
 
 @pytest.fixture
 def wait(driver):
@@ -74,4 +78,11 @@ def glitch_user():
     return {
         "username": "performance_glitch_user",
         "password": "secret_sauce"
+    }
+
+@pytest.fixture
+def invalid_user():
+    return {
+        "username": "standart_user",
+        "password": "invalid_password"
     }
